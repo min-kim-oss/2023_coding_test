@@ -1,0 +1,52 @@
+bingo = []
+for i in range(5):
+    bingo_arr = list(map(int,input().split()))
+    bingo.append(bingo_arr)
+
+num_arr = []
+for i in range(5):
+    num_arr = num_arr + list((map(int, input().split())))
+
+bingo_check = 0
+
+for i in range(25):
+    for j in range(5):
+        for k in range(5):
+            if bingo[j][k] == num_arr[i]:
+                bingo[j][k] = 0
+                #해당 세로라인 판단
+                o_num = 0
+                for l in range(5):
+                    if(bingo[l][k] == 0 ):
+                        o_num +=1
+                if o_num == 5:
+                    bingo_check += 1
+                #해당 가로라인 판단
+                o_num = 0
+                for l in range(5):
+                    if(bingo[j][l] == 0):
+                        o_num += 1
+                if o_num == 5 :
+                    bingo_check += 1
+
+                o_num = 0
+                if(j == k): #대각선 해당일시 판단 진행
+                    for l in range(5):
+                        if(bingo[l][l] == 0):
+                            o_num += 1
+                    if o_num == 5 :
+                        bingo_check += 1
+
+                o_num = 0
+                if (j + k == 4): #대각선 해당일시 판단 진행
+                    for l in range(5):
+                        if (bingo[l][4-l] == 0):
+                            o_num += 1
+                    if o_num == 5:
+                        bingo_check += 1
+        if bingo_check >= 3:
+            break
+    if bingo_check >= 3:
+        print(i+1)
+        break
+
