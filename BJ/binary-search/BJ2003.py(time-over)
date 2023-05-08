@@ -1,0 +1,34 @@
+import sys
+
+n , m = map(int, sys.stdin.readline().split())
+arr = list(map(int,sys.stdin.readline().split()))
+
+#print(arr)
+
+count = 0
+start = 0
+
+while( start <= (n // 2) + 1 ):
+    #print("while")
+    sum_a = 0
+    sum_b = 0
+    for j in range (n//2 + 1):
+        #print("start :", start + j,", end :", n-start-j-1)
+        if( start+j > n-start-j-1 ):
+            #print("over")
+            break
+        sum_a += arr[start+j]
+        sum_b += arr[n-start-j-1]
+
+        if (sum_a == m ):
+            count += 1
+            if (sum_b == m and (start+j != n-start-1)):
+                count += 1
+                print("end")
+                break
+        elif ( sum_b == m ):
+            count += 1
+
+    start += 1
+print(count)
+
